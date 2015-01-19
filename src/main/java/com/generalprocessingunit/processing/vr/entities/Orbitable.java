@@ -1,4 +1,4 @@
-package com.generalprocessingunit.vr.entities;
+package com.generalprocessingunit.processing.vr.entities;
 
 import processing.core.PApplet;
 import processing.core.PConstants;

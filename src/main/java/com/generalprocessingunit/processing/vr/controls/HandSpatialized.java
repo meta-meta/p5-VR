@@ -1,4 +1,4 @@
-package com.generalprocessingunit.vr.controls;
+package com.generalprocessingunit.processing.vr.controls;
 
 import com.generalprocessingunit.hid.GloveManager;
 import com.generalprocessingunit.hid.Hand;

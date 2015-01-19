@@ -1,11 +1,11 @@
-package com.generalprocessingunit.vr.controls;
+package com.generalprocessingunit.processing.vr.controls;
 
 import com.generalprocessingunit.hid.Hand;
 import com.generalprocessingunit.processing.space.AxisAngle;
 import com.generalprocessingunit.processing.Color;
 import com.generalprocessingunit.processing.space.EuclideanSpaceObject;
 import com.generalprocessingunit.processing.space.YawPitchRoll;
-import com.generalprocessingunit.vr.entities.Primitives;
+import com.generalprocessingunit.processing.vr.entities.Primitives;
 import processing.core.*;
 
 public class Dial extends AbstractControl{

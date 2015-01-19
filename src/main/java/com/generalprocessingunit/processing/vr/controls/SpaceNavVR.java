@@ -1,4 +1,4 @@
-package com.generalprocessingunit.vr.controls;
+package com.generalprocessingunit.processing.vr.controls;
 
 import com.generalprocessingunit.hid.SpaceNavigator;
 import com.generalprocessingunit.processing.MomentumVector;
