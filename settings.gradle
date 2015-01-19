@@ -2,8 +2,8 @@ rootProject.name = 'p5-VR'
 
 gradle.ext.gitDependencies = [
 	[cloneTo:'../p5-Helpers', uri:'https://github.com/meta-meta/p5-Helpers.git'],
-	[cloneTo:'../p5-Helpers', uri:'https://github.com/meta-meta/p5-Spatial.git'],
-	[cloneTo:'../p5-Helpers', uri:'https://github.com/meta-meta/human-interface-device.git'],
+	[cloneTo:'../p5-Spatial', uri:'https://github.com/meta-meta/p5-Spatial.git'],
+	[cloneTo:'../human-interface-devices', uri:'https://github.com/meta-meta/human-interface-devices.git'],
 	[cloneTo:'../processing', uri:'https://github.com/meta-meta/processing.git', subPath:'/core']
 ]
 

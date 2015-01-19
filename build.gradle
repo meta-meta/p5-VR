@@ -24,7 +24,7 @@ dependencies {
     compile project (':../processing/core')
     compile project (':../p5-Helpers')
     compile project (':../p5-Spatial')
-    compile project (':../human-interface-device')
+    compile project (':../human-interface-devices')
 }
 
 sourceCompatibility = 1.7
