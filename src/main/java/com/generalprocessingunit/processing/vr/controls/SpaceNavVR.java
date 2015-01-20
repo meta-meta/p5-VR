@@ -3,7 +3,7 @@ package com.generalprocessingunit.processing.vr.controls;
 import com.generalprocessingunit.hid.SpaceNavigator;
 import com.generalprocessingunit.processing.MomentumVector;
 import com.generalprocessingunit.processing.MomentumYawPitchRoll;
-import com.generalprocessingunit.vr.PAppletVR;
+import com.generalprocessingunit.processing.vr.PAppletVR;
 import processing.core.PVector;
 
 public class SpaceNavVR {
