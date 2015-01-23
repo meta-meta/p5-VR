@@ -7,6 +7,7 @@ import com.generalprocessingunit.processing.Color;
 import com.generalprocessingunit.processing.space.EuclideanSpaceObject;
 import com.generalprocessingunit.processing.space.YawPitchRoll;
 import com.generalprocessingunit.processing.vr.PAppletVR;
+import processing.core.PApplet;
 import processing.core.PConstants;
 import processing.core.PGraphics;
 import processing.core.PVector;
@@ -15,43 +16,44 @@ import java.util.Arrays;
 import java.util.List;
 
 public class HandSpatialized {
-    PAppletVR p5;
+    PApplet p5;
+    HeadModel headModel;
 
     GloveManager gloveManager = new GloveManager();
     public Hand leftHand = gloveManager.getLeftHand();
 
-    HandPart razerHydraSensor = new HandPart(new PVector(.0125f, .0125f, .05f));
-    HandPart palm = new HandPart(new PVector(.0425f, .0125f, .050f));
+    public HandPart razerHydraSensor = new HandPart(new PVector(.0125f, .0125f, .05f));
+    public HandPart palm = new HandPart(new PVector(.0425f, .0125f, .050f));
     
-    HandPart pinky =    new HandPart(new PVector(.005f,    .01f, .035f));
-    HandPart ring =     new HandPart(new PVector(.0075f, .0125f, .040f));
-    HandPart middle =   new HandPart(new PVector(.0075f, .0125f, .045f));
-    HandPart pointer =  new HandPart(new PVector(.0075f, .0125f, .040f));
-    HandPart thumb =    new HandPart(new PVector(.008f,   .0125f, .030f));
+    public HandPart pinky =    new HandPart(new PVector(.005f,    .01f, .035f));
+    public HandPart ring =     new HandPart(new PVector(.0075f, .0125f, .040f));
+    public HandPart middle =   new HandPart(new PVector(.0075f, .0125f, .045f));
+    public HandPart pointer =  new HandPart(new PVector(.0075f, .0125f, .040f));
+    public HandPart thumb =    new HandPart(new PVector(.008f,   .0125f, .030f));
 
-    EuclideanSpaceObject pinkyKnuckle = new EuclideanSpaceObject();
-    EuclideanSpaceObject ringKnuckle = new EuclideanSpaceObject();
-    EuclideanSpaceObject middleKnuckle = new EuclideanSpaceObject();
-    EuclideanSpaceObject pointerKnuckle = new EuclideanSpaceObject();
-    EuclideanSpaceObject thumbKnuckle = new EuclideanSpaceObject();
+    public EuclideanSpaceObject pinkyKnuckle = new EuclideanSpaceObject();
+    public EuclideanSpaceObject ringKnuckle = new EuclideanSpaceObject();
+    public EuclideanSpaceObject middleKnuckle = new EuclideanSpaceObject();
+    public EuclideanSpaceObject pointerKnuckle = new EuclideanSpaceObject();
+    public EuclideanSpaceObject thumbKnuckle = new EuclideanSpaceObject();
     
     static final float vibratorShellRadius = .005f;
-    VibratorShell thumbBase = new VibratorShell(leftHand.knuckles.get(0));
-    VibratorShell pointerBase = new VibratorShell(leftHand.knuckles.get(1));
-    VibratorShell middleBase = new VibratorShell(leftHand.knuckles.get(2));
-    VibratorShell ringBase = new VibratorShell(leftHand.knuckles.get(3));
-    VibratorShell pinkyBase = new VibratorShell(leftHand.knuckles.get(4));
+    public VibratorShell thumbBase = new VibratorShell(leftHand.knuckles.get(0));
+    public VibratorShell pointerBase = new VibratorShell(leftHand.knuckles.get(1));
+    public VibratorShell middleBase = new VibratorShell(leftHand.knuckles.get(2));
+    public VibratorShell ringBase = new VibratorShell(leftHand.knuckles.get(3));
+    public VibratorShell pinkyBase = new VibratorShell(leftHand.knuckles.get(4));
 
-    VibratorShell thumbTip = new VibratorShell(leftHand.fingertips.get(0));
-    VibratorShell pointerTip = new VibratorShell(leftHand.fingertips.get(1));
-    VibratorShell middleTip = new VibratorShell(leftHand.fingertips.get(2));
-    VibratorShell ringTip = new VibratorShell(leftHand.fingertips.get(3));
-    VibratorShell pinkyTip = new VibratorShell(leftHand.fingertips.get(4));
+    public VibratorShell thumbTip = new VibratorShell(leftHand.fingertips.get(0));
+    public VibratorShell pointerTip = new VibratorShell(leftHand.fingertips.get(1));
+    public VibratorShell middleTip = new VibratorShell(leftHand.fingertips.get(2));
+    public VibratorShell ringTip = new VibratorShell(leftHand.fingertips.get(3));
+    public VibratorShell pinkyTip = new VibratorShell(leftHand.fingertips.get(4));
 
-    VibratorShell palmRingPinky = new VibratorShell(leftHand.palm.get(0));
-    VibratorShell palmPointerMid = new VibratorShell(leftHand.palm.get(1));
-    VibratorShell palmPinkyMeat = new VibratorShell(leftHand.palm.get(2));
-    VibratorShell palmThumbMeat = new VibratorShell(leftHand.palm.get(3));
+    public VibratorShell palmRingPinky = new VibratorShell(leftHand.palm.get(0));
+    public VibratorShell palmPointerMid = new VibratorShell(leftHand.palm.get(1));
+    public VibratorShell palmPinkyMeat = new VibratorShell(leftHand.palm.get(2));
+    public VibratorShell palmThumbMeat = new VibratorShell(leftHand.palm.get(3));
 
     public List<VibratorShell> vibratorShells = Arrays.asList(
             thumbTip, pointerTip, middleTip, ringTip, pinkyTip,
@@ -63,9 +65,11 @@ public class HandSpatialized {
 
     public Color color = new Color(10);
 
+    public boolean drawArm = true;
 
-    public HandSpatialized(PAppletVR p5) {
+    public HandSpatialized(HeadModel headModel, PApplet p5) {
         this.p5 = p5;
+        this.headModel = headModel;
 
         leftHand.gloveDevice.addChild(razerHydraSensor, new PVector(0, 0, -.025f));
         leftHand.gloveDevice.addChild(palm, new PVector(0, -.0125f, -.03f));
@@ -103,7 +107,7 @@ public class HandSpatialized {
     public void update() {
         gloveManager.poll();
 
-        p5.headContainer.translateAndRotateObjectWRTObjectCoords(leftHand.gloveDevice);
+        headModel.headContainer.translateAndRotateObjectWRTObjectCoords(leftHand.gloveDevice);
 
         pinkyKnuckle.pitch(leftHand.pinky.getBend() / 350f);
         ringKnuckle.pitch(leftHand.ring.getBend() / 350f);
@@ -119,7 +123,7 @@ public class HandSpatialized {
     }
 
     void drawHand(Hand hand, PGraphics pG) {
-        shoulderLocation = p5.neck.getTranslationWRTObjectCoords( new PVector(-.01f, -.02f, -.01f));
+        shoulderLocation = headModel.neck.getLocation(); //.getTranslationWRTObjectCoords( new PVector(-.01f, -.02f, -.01f));
 
         pG.colorMode(PConstants.RGB);
         pG.fill(255, 0, 0);
@@ -140,6 +144,8 @@ public class HandSpatialized {
             vs.draw(pG);
         }
         pG.colorMode(PConstants.RGB);
+
+        if(!drawArm) return;
 
         pG.noStroke();
         pG.fill(color.R, color.G, color.B);
@@ -166,7 +172,7 @@ public class HandSpatialized {
     }
 
     public void reset() {
-        leftHand.reset( PVector.sub(p5.head.getLocation(), p5.headContainer.getLocation()));
+        leftHand.reset( PVector.sub(headModel.head.getLocation(), headModel.headContainer.getLocation()));
     }
 
     public void invert() {
