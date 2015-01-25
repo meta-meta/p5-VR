@@ -123,7 +123,7 @@ public class HandSpatialized {
     }
 
     void drawHand(Hand hand, PGraphics pG) {
-        shoulderLocation = headModel.neck.getLocation(); //.getTranslationWRTObjectCoords( new PVector(-.01f, -.02f, -.01f));
+        shoulderLocation = headModel.neck.getTranslationWRTObjectCoords( new PVector(-.01f, -.02f, -.01f));
 
         pG.colorMode(PConstants.RGB);
         pG.fill(255, 0, 0);
@@ -148,7 +148,7 @@ public class HandSpatialized {
         if(!drawArm) return;
 
         pG.noStroke();
-        pG.fill(color.R, color.G, color.B);
+        pG.fill(color.R, color.G, color.B, color.A);
         PVector wristLoc = palm.getTranslationWRTObjectCoords(new PVector(0, 0, -palm.dimensions.z / 1.8f));
         for (float f = 0; f < 1; f += .1f) {
             pG.pushMatrix();
