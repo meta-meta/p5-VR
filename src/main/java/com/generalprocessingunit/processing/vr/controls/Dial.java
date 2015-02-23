@@ -105,6 +105,7 @@ public class Dial extends AbstractControl{
                     }
                 } else {
                     touched = false;
+                    indicateTouch(hand);
                     setDefaultKnobColor(p5);
                 }
             }
@@ -154,24 +155,24 @@ public class Dial extends AbstractControl{
     }
 
     private void indicateTick(Hand hand ) {
-        hand.fingertips.vibrate(1);
+        hand.fingertips.setVibrate(1);
     }
 
     float prevWarningLimit = 0;
     void indicateMinOrMax(float attemptedVal, Hand hand) {
         if(attemptedVal > maxVal && attemptedVal > prevWarningLimit) {
-            hand.pointer.vibrate(1);
+            hand.pointer.setVibrate(1);
             prevWarningLimit = attemptedVal;
         }
 
         if(attemptedVal < minVal && attemptedVal < prevWarningLimit) {
-            hand.pinky.vibrate(1);
+            hand.pinky.setVibrate(1);
             prevWarningLimit = attemptedVal;
         }
     }
 
     private void indicateTouch(Hand hand) {
-        hand.fingers.vibrate(1);
+        hand.fingers.setVibrate(1);
     }
 
     // TODO this total rotation logic should get abstracted away
