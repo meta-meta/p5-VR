@@ -3,11 +3,12 @@ package com.generalprocessingunit.processing.vr.controls;
 import com.generalprocessingunit.hid.SpaceNavigator;
 import com.generalprocessingunit.processing.MomentumVector;
 import com.generalprocessingunit.processing.MomentumYawPitchRoll;
-import com.generalprocessingunit.processing.vr.PAppletVR;
+import com.generalprocessingunit.processing.space.EuclideanSpaceObject;
+import processing.core.PApplet;
 import processing.core.PVector;
 
 public class SpaceNavVR {
-    PAppletVR p5;
+    EuclideanSpaceObject headContainer;
 
     SpaceNavigator spaceNav;
     public MomentumVector momentum;
@@ -18,8 +19,8 @@ public class SpaceNavVR {
 
     static boolean invertedControl = true;
 
-    public SpaceNavVR(PAppletVR p5, float friction, float speed) {
-        this.p5 = p5;
+    public SpaceNavVR(PApplet p5, EuclideanSpaceObject headContainer, float friction, float speed) {
+        this.headContainer = headContainer;
         spaceNav = new SpaceNavigator(p5);
         momentum = new MomentumVector(p5, friction);
         rotMomentum = new MomentumYawPitchRoll(p5, friction);
@@ -39,8 +40,8 @@ public class SpaceNavVR {
         momentum.friction();
         rotMomentum.friction();
 
-        p5.headContainer.translateWRTObjectCoords(momentum.getValue());
-        p5.headContainer.rotate(rotMomentum.getValue());
+        headContainer.translateWRTObjectCoords(momentum.getValue());
+        headContainer.rotate(rotMomentum.getValue());
     }
 
     public void invertControl(){

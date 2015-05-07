@@ -6,7 +6,6 @@ import com.generalprocessingunit.processing.space.AxisAngle;
 import com.generalprocessingunit.processing.Color;
 import com.generalprocessingunit.processing.space.EuclideanSpaceObject;
 import com.generalprocessingunit.processing.space.YawPitchRoll;
-import com.generalprocessingunit.processing.vr.PAppletVR;
 import processing.core.PApplet;
 import processing.core.PConstants;
 import processing.core.PGraphics;
